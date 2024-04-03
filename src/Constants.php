@@ -9,6 +9,7 @@ class Constants
     // HTTP verbs
     public const GET = "GET";
     public const POST = "POST";
+    public const DELETE = "DELETE";
 
     // APIs which need an X-HTTP-Method-Override GET HEADER
     public const API_NEED_EXTRA_HEADER = array(

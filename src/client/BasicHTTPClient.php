@@ -105,6 +105,41 @@ class BasicHTTPClient implements HTTPClient
     }
 
     /**
+     * A helper module for making generic getWithArrayParams requests calls.It is used by
+     * every namespaced API getWithArrayParams method.
+     *
+     *      $amadeus->getAirport()->getDirectDestinations()->get(
+     *          ["departureAirportCode" => "MAD", "max" => 2]
+     *      );
+     *
+     * It can be used to make any generic API call that is automatically
+     * authenticated using your API credentials:
+     *
+     *      $this->amadeus->getClient()->getWithArrayParams(
+     *          '/v1/airport/direct-destinations',
+     *          ["departureAirportCode" => "MAD", "max" => 2]
+     *      );
+     *
+     * @param string $path
+     * @param array $params
+     * @return Response
+     * @throws ResponseException
+     */
+    public function delete(string $path): Response
+    {
+        $request = new Request(
+            Constants::DELETE,
+            $path,
+            null,
+            null,
+            $this->getAccessToken()->getBearerToken(),
+            $this
+        );
+
+        return $this->execute($request);
+    }
+
+    /**
      * A helper module for making generic postWithStringBody requests calls.It is used by
      * every namespaced API postWithStringBody method.
      *
